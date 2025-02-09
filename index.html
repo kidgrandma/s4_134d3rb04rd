@@ -3,131 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Leaderboard</title>
-    <style>
-        /* General Styling */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a001a; /* Cyber Purple */
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin: 20px 0;
-            color: #e91e63; /* Bright accent */
-            text-shadow: 0 0 10px #e91e63, 0 0 20px #ff00ff; /* Neon glow */
-        }
-
-        /* Table Styling */
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background: #2d003d; /* Darker purple */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: center;
-        }
-
-        th {
-            background: #6a0080; /* Mid purple */
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-
-        td {
-            background: #1a001a; /* Cyber Purple */
-            color: #fff;
-            font-size: 16px;
-        }
-
-        /* Row Hover Effect */
-        tr:hover td {
-            background: #ff00ff; /* Bright hover color */
-            color: #000;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* Custom Styling for Veteran and Virgin */
-        .veteran {
-            color: #ff1493; /* Bright pink */
-        }
-
-        .virgin {
-            color: #00ff00; /* Bright green */
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            th, td {
-                font-size: 14px;
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-        }
-    </style>
+    <title>Game Overview</title>
+    <link rel="stylesheet" href="styles/leaderboard.css">
 </head>
 <body>
-    <h1>Game Leaderboard</h1>
+    <h1>Game Overview</h1>
+    <h2>Top Leaders</h2>
     <table>
         <thead>
             <tr>
-                <th>Type</th>
-                <th>Handle</th>
-                <th>Team</th>
-                <th>Player Number</th>
                 <th>Rank</th>
+                <th>Name</th>
+                <th>House</th>
                 <th>Score</th>
             </tr>
         </thead>
-        <tbody id="leaderboard">
-            <!-- Data will load here -->
+        <tbody id="overview-leaderboard">
+            <!-- Top leader data will load here -->
         </tbody>
     </table>
 
+    <h2>View House Leaderboards</h2>
+    <ul>
+        <li><a href="house1.html">House 1 Leaderboard</a></li>
+        <li><a href="house2.html">House 2 Leaderboard</a></li>
+        <li><a href="house3.html">House 3 Leaderboard</a></li>
+    </ul>
+
+    <script src="scripts/leaderboard.js"></script>
     <script>
-        // Function to load leaderboard data
-        async function loadLeaderboard() {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbx2BWrB3-oiAY-zYpyfyYOIo3Abrkgr4GMM1AIW6RLHCnPZcUfPn72D1obsLvPMnXVp/exec');
-            const data = await response.json();
-
-            // Generate leaderboard rows
-            let leaderboardHTML = '';
-            data.forEach((row) => {
-                const typeClass = row.type.toLowerCase() === "veteran" ? "veteran" : "virgin";
-                leaderboardHTML += `
-                    <tr>
-                        <td class="${typeClass}">${row.type}</td>
-                        <td class="${typeClass}">${row.handle}</td>
-                        <td>${row.team}</td>
-                        <td>${row.playerNumber}</td>
-                        <td>${row.rank}</td>
-                        <td>${row.score}</td>
-                    </tr>`;
-            });
-
-            // Update the table
-            document.getElementById("leaderboard").innerHTML = leaderboardHTML;
-        }
-
-        // Load leaderboard on page load
-        loadLeaderboard();
-
-        // Auto-refresh every 10 seconds
-        setInterval(loadLeaderboard, 10000);
+        // Fetch and display overall leaders
+        loadOverviewLeaderboard();
     </script>
 </body>
 </html>
