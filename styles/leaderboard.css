@@ -1,0 +1,43 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a001a; /* Cyber Purple */
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    color: #e91e63; /* Bright pink */
+    text-shadow: 0 0 10px #e91e63, 0 0 20px #ff00ff;
+}
+
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #fff;
+}
+
+th {
+    background: #6a0080; /* Dark purple */
+    color: #fff;
+    text-transform: uppercase;
+}
+
+td {
+    background: #1a001a; /* Cyber Purple */
+}
+
+tr:hover td {
+    background: #ff00ff; /* Bright hover color */
+    color: #000;
+    transition: background 0.3s, color 0.3s;
+}
