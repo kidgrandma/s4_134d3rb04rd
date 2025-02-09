@@ -42,11 +42,11 @@
     <table>
         <thead>
             <tr>
-                <th>Rank</th>
                 <th>Type</th>
                 <th>Handle</th>
                 <th>Team</th>
                 <th>Player Number</th>
+                <th>Rank</th>
                 <th>Score</th>
             </tr>
         </thead>
@@ -56,28 +56,35 @@
     </table>
 
     <script>
+        // Function to load leaderboard data
         async function loadLeaderboard() {
+            // Google Apps Script Web App URL
             const response = await fetch('https://script.google.com/macros/s/AKfycbyDk_Uj1oMPW5h1Pe4dgSHpZ_Qfjd3rVm5xipbMggSP09saefW_kv1_mdR-7n_FNAPJ/exec');
             const data = await response.json();
 
+            // Generate leaderboard rows
             let leaderboardHTML = '';
-            data.forEach((row, index) => {
+            data.forEach((row) => {
                 leaderboardHTML += `
                     <tr>
-                        <td>${index + 1}</td>
                         <td>${row.type}</td>
                         <td>${row.handle}</td>
                         <td>${row.team}</td>
                         <td>${row.playerNumber}</td>
+                        <td>${row.rank}</td>
                         <td>${row.score}</td>
                     </tr>`;
             });
 
+            // Update the table
             document.getElementById("leaderboard").innerHTML = leaderboardHTML;
         }
 
+        // Load leaderboard on page load
         loadLeaderboard();
-        setInterval(loadLeaderboard, 10000); // Refresh every 10 seconds
+
+        // Auto-refresh every 10 seconds
+        setInterval(loadLeaderboard, 10000);
     </script>
 </body>
 </html>
