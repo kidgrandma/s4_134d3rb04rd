@@ -58,6 +58,15 @@
             transition: background 0.3s, color 0.3s;
         }
 
+        /* Custom Styling for Veteran and Virgin */
+        .veteran {
+            color: #ff1493; /* Bright pink */
+        }
+
+        .virgin {
+            color: #00ff00; /* Bright green */
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             th, td {
@@ -98,10 +107,11 @@
             // Generate leaderboard rows
             let leaderboardHTML = '';
             data.forEach((row) => {
+                const typeClass = row.type.toLowerCase() === "veteran" ? "veteran" : "virgin";
                 leaderboardHTML += `
                     <tr>
-                        <td>${row.type}</td>
-                        <td>${row.handle}</td>
+                        <td class="${typeClass}">${row.type}</td>
+                        <td class="${typeClass}">${row.handle}</td>
                         <td>${row.team}</td>
                         <td>${row.playerNumber}</td>
                         <td>${row.rank}</td>
