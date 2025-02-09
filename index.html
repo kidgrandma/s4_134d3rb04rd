@@ -56,28 +56,34 @@
     </table>
 
     <script>
-       async function loadLeaderboard() {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbwGnDU1plWMHMDiTO1iJlKsfGhUXnFOqw289306aOYY44N-FZ-FGtBPTZZBdD4dAgmu/exec');
-    const data = await response.json();
+        // Function to load leaderboard data
+        async function loadLeaderboard() {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzFonUu2tpA0q5_na386O7uy6eEZem7k0GqmoQM6rcQL6R-7XV9c8ojZE1X83KzlLlI/exec');
+            const data = await response.json();
 
-    let leaderboardHTML = '';
-    data.forEach((row) => {
-        leaderboardHTML += `
-            <tr>
-                <td>${row.type}</td>
-                <td>${row.handle}</td>
-                <td>${row.team}</td>
-                <td>${row.playerNumber}</td>
-                <td>${row.rank}</td>
-                <td>${row.score}</td>
-            </tr>`;
-    });
+            // Generate leaderboard rows
+            let leaderboardHTML = '';
+            data.forEach((row) => {
+                leaderboardHTML += `
+                    <tr>
+                        <td>${row.type}</td>
+                        <td>${row.handle}</td>
+                        <td>${row.team}</td>
+                        <td>${row.playerNumber}</td>
+                        <td>${row.rank}</td>
+                        <td>${row.score}</td>
+                    </tr>`;
+            });
 
-    document.getElementById("leaderboard").innerHTML = leaderboardHTML;
-}
+            // Update the table
+            document.getElementById("leaderboard").innerHTML = leaderboardHTML;
+        }
 
-loadLeaderboard();
-setInterval(loadLeaderboard, 10000); // Refresh every 10 seconds
+        // Load leaderboard on page load
+        loadLeaderboard();
+
+        // Auto-refresh every 10 seconds
+        setInterval(loadLeaderboard, 10000);
     </script>
 </body>
 </html>
