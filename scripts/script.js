@@ -1,13 +1,7 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbx8EYRig-k1CxlJeSzTHdBI1EVDEBh7vilh9-9cfnD2vp3fzNDqarCM8_nwnyHzb72a2w/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzmSynXJqisse9IjP-125YqFNCDJs4au7QvoZndesFR37zB-gIUlJxmYIOCTt5gauJbcA/exec"; 
 
 async function fetchLeaderboard(tabName) {
-    if (!tabName) {
-        console.error("Error: tab is not defined.");
-        return;
-    }
-
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
-    console.log("Fetching leaderboard for tab:", tabName); // ✅ Debugging log
 
     try {
         let response = await fetch(url, {
