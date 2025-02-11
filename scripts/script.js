@@ -2,11 +2,15 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxAuzgY2NvYafArQvz0vUkM
 
 async function fetchLeaderboard(type, house = null) {
     let url = `${API_URL}?type=${type}`;
-    if (house) url += `&house=${house}`;
+    if (house) url += `&house=${encodeURIComponent(house)}`;
 
     try {
-        let response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch leaderboard data");
+        let response = await fetch(url, {
+            method: "GET",
+            headers: { "Cache-Control": "no-cache" } // Prevents old data from caching
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         let data = await response.json();
         updateLeaderboardDisplay(type, data, house);
