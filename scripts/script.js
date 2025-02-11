@@ -32,3 +32,4 @@ function updateLeaderboard(data) {
 
 // Load data on page load
 document.addEventListener("DOMContentLoaded", fetchLeaderboard);
+ 
