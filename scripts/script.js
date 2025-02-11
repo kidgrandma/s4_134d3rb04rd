@@ -4,15 +4,19 @@ async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
 
     try {
-        let response = await fetch(url, {
+        let response = await fetch(url, { 
             method: "GET",
-            mode: "cors", // ✅ Ensures cross-origin request
             headers: { "Cache-Control": "no-cache" }
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-        let data = await response.json();
+        let textData = await response.text(); // Capture raw response
+        console.log("Raw API Response:", textData); // Log response to DevTools
+
+        let data = JSON.parse(textData); // Parse JSON manually
+        console.log("Parsed JSON Data:", data); // Log final parsed data
+
         updateLeaderboardDisplay(tabName, data);
     } catch (error) {
         console.error(`Error fetching leaderboard:`, error);
