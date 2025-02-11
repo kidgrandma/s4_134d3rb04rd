@@ -1,15 +1,13 @@
 /* Load LazyDog Font */
 @font-face {
     font-family: 'LazyDog';
-    src: url('/assets/Lazydog.otf') format('opentype'),
-         url('/assets/lazy_dog.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    src: url('s4_134d3rb04rd/assets/Lazydog.otf') format('opentype'),
+         url('s4_134d3rb04rd/assets/lazy_dog.ttf') format('truetype');
 }
  
 /* Apply Worksucks Background */
 body {
-background: url('assets/worksucksbackground.png') repeat;
+background: url('s4_134d3rb04rd/assets/worksucksbackground.png') repeat;
     background-size: cover;
     color: #0ff; /* Neon cyan text */
     font-family: 'LazyDog', sans-serif;
