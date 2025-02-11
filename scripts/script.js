@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxAuzgY2NvYafArQvz0vUkMjpLzlecsgCbejCIztA0zhxaVwFjgqgshm1KIjnT14TcI/exec"; // Replace with your Google Apps Script Web App URL
+const API_URL = "https://script.google.com/macros/s/AKfycbzAdfQiumMdWaYhMn9_8cCiTjjSjDiyF_9MB4eiHdwmw6LA4SGSO1AxenyCZxy3YewR/exec"; // Replace with your Google Apps Script Web App URL
 
 async function fetchLeaderboard(type, house = null) {
     let url = `${API_URL}?type=${type}`;
