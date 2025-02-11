@@ -1,12 +1,12 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbyFuissvzEjNgDs75ZqtGhWeN5dQkHKq8p_86HAieK0Ur_Fk0Luy1_Ggsa7ELaJyQQVrA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzGeOmzJCi6gj8MfTtrhEBCd-3j1bJqZZ-k_T4bEKntI4lQqtVU_evF4_g6pcIeOiGdmg/exec";
 
 async function fetchLeaderboard(tabName) {
-    let url = `https://script.google.com/macros/s/AKfycbyFuissvzEjNgDs75ZqtGhWeN5dQkHKq8p_86HAieK0Ur_Fk0Luy1_Ggsa7ELaJyQQVrA/exec?tab=${encodeURIComponent(tabName)}`;
+    let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
 
     try {
         let response = await fetch(url, {
             method: "GET",
-            mode: "cors",  // ✅ Ensures cross-origin request
+            mode: "cors",
             headers: { "Cache-Control": "no-cache" }
         });
 
@@ -15,16 +15,16 @@ async function fetchLeaderboard(tabName) {
         let data = await response.json();
         updateLeaderboardDisplay(tabName, data);
     } catch (error) {
-        console.error(`Error fetching leaderboard:`, error);
+        console.error(`❌ Error fetching leaderboard:`, error);
     }
 }
 
-function updateLeaderboardDisplay(house, data) {
+function updateLeaderboardDisplay(tabName, data) {
     let container = document.getElementById("leaderboard");
-    container.innerHTML = `<h2>${house === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${house} Leaderboard`}</h2>`;
+    container.innerHTML = `<h2>${tabName === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${tabName} Leaderboard`}</h2>`;
 
     let table = document.createElement("table");
-    table.innerHTML = `<tr>${house === "S4 OVERVIEW" 
+    table.innerHTML = `<tr>${tabName === "S4 OVERVIEW" 
         ? "<th>Type</th><th>Player Number</th><th>Score</th><th>Weapons</th>"
         : "<th>Type</th><th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}</tr>`;
 
@@ -40,3 +40,10 @@ function updateLeaderboardDisplay(house, data) {
 
     container.appendChild(table);
 }
+
+// Load leaderboard based on URL parameter
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get("tab") || "S4 OVERVIEW"; // Default to Overview
+    fetchLeaderboard(tab);
+});
