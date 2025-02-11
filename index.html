@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts/script.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 id="leaderboard-title">🏆 Leaderboard</h1>
-
-        <!-- Dropdown to Select House -->
-        <select id="house-select">
-            <option value="S4 OVERVIEW">🏆 Overview</option>
-            <option value="HOUSE 1">🏠 House 1</option>
-            <option value="HOUSE 2">🏠 House 2</option>
-            <option value="HOUSE 3">🏠 House 3</option>
-        </select>
-
-        <!-- Table Container -->
-        <div id="leaderboard"></div>
+        <h1>🏆 Leaderboard</h1>
+        <table id="leaderboard">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Handle</th>
+                    <th>Team</th>
+                    <th>Weapons</th>
+                    <th>Player #</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 </body>
 </html>
