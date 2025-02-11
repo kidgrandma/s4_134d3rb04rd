@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzq90skfdMkf--1W6aRkPDRM8sPyDU38P9A1naRC78fugh04yoLz0wDG1md5m4ybugleg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycby-ImMu84aaRuAX2r4-3cB6vE2szGGvzHOWHza_i5tsHJlhQ16mgXufHAWTTHgaZOeqQw/exec";
  
 async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
