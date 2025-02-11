@@ -1,7 +1,7 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbyFuissvzEjNgDs75ZqtGhWeN5dQkHKq8p_86HAieK0Ur_Fk0Luy1_Ggsa7ELaJyQQVrA/exec";
 
 async function fetchLeaderboard(tabName) {
-    let url = `YOUR_DEPLOYMENT_URL?tab=${encodeURIComponent(tabName)}`;
+    let url = `https://script.google.com/macros/s/AKfycbyFuissvzEjNgDs75ZqtGhWeN5dQkHKq8p_86HAieK0Ur_Fk0Luy1_Ggsa7ELaJyQQVrA/exec?tab=${encodeURIComponent(tabName)}`;
 
     try {
         let response = await fetch(url, {
