@@ -36,4 +36,4 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
     fetchLeaderboard();
     setInterval(fetchLeaderboard, 30000); // Refresh every 30 sec
-});
+;
