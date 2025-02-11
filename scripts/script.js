@@ -1,17 +1,20 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzAdfQiumMdWaYhMn9_8cCiTjjSjDiyF_9MB4eiHdwmw6LA4SGSO1AxenyCZxy3YewR/exec"; // Corrected API URL
 
 async function fetchLeaderboard(type, house = null) {
-    console.log(`Fetching leaderboard for: ${type}, ${house}`);
-
     let sheetName = type === "overview" ? "S4 OVERVIEW" : house;
-    let url = `${API_URL}?type=${type}&house=${encodeURIComponent(sheetName)}`;
+    let url = `https://script.google.com/macros/s/AKfycbzAdfQiumMdWaYhMn9_8cCiTjjSjDiyF_9MB4eiHdwmw6LA4SGSO1AxenyCZxy3YewR/exec?type=${type}&house=${encodeURIComponent(sheetName)}`;
 
     try {
-        let response = await fetch(url, { method: "GET", headers: { "Cache-Control": "no-cache" } });
+        let response = await fetch(url, {
+            method: "GET",
+            mode: "cors", // <-- Force CORS mode
+            headers: { "Cache-Control": "no-cache" }
+        });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         let data = await response.json();
+        console.log("Fetched Data:", data); // Debugging
         updateLeaderboardDisplay(type, data, sheetName);
     } catch (error) {
         console.error(`Error fetching ${type} leaderboard:`, error);
