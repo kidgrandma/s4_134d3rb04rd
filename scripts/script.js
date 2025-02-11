@@ -19,6 +19,8 @@ async function fetchLeaderboard(tabName) {
 
         updateLeaderboardDisplay(tabName, data);
     } catch (error) {
+        console.log("Updating leaderboard for:", tab);
+console.log("Received data:", data);
         console.error(`Error fetching leaderboard:`, error);
     }
 }
