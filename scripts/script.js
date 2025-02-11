@@ -47,3 +47,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const tab = params.get("tab") || "S4 OVERVIEW";  // Default to Overview
     fetchLeaderboard(tab);
 });
+ 
