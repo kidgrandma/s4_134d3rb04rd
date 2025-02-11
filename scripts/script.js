@@ -1,22 +1,19 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzqfFC9WZ86WTZ5HX5IyH5-sdscvnR1yGy1HbhTIhlZw2YhGNOxmpAenEM8NJC7cpc0/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyFuissvzEjNgDs75ZqtGhWeN5dQkHKq8p_86HAieK0Ur_Fk0Luy1_Ggsa7ELaJyQQVrA/exec";
 
-async function fetchLeaderboard(house) {
-    let url = `${API_URL}?type=${house === "S4 OVERVIEW" ? "overview" : "house"}&house=${encodeURIComponent(house)}`;
+async function fetchLeaderboard(tabName) {
+    let url = `YOUR_DEPLOYMENT_URL?tab=${encodeURIComponent(tabName)}`;
 
     try {
         let response = await fetch(url, {
             method: "GET",
-            mode: "cors", // ✅ Enables cross-origin request
-            headers: {
-                "Cache-Control": "no-cache",
-                "Content-Type": "application/json"
-            }
+            mode: "cors",  // ✅ Ensures cross-origin request
+            headers: { "Cache-Control": "no-cache" }
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         let data = await response.json();
-        updateLeaderboardDisplay(house, data);
+        updateLeaderboardDisplay(tabName, data);
     } catch (error) {
         console.error(`Error fetching leaderboard:`, error);
     }
