@@ -4,28 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House 3 Leaderboard</title>
-    <link rel="stylesheet" href="styles/leaderboard.css">
+    <script src="../scripts/script.js" defer></script> <!-- Updated path -->
+    <style>
+        body { font-family: Arial, sans-serif; background-color: black; color: cyan; text-align: center; }
+        table { width: 80%; margin: auto; border-collapse: collapse; }
+        th, td { border: 1px solid cyan; padding: 10px; }
+    </style>
 </head>
 <body>
     <h1>House 3 Leaderboard</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Handle</th>
-                <th>Team</th>
-                <th>Player Number</th>
-                <th>Rank</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody id="leaderboard">
-            <!-- Data will load here -->
-        </tbody>
-    </table>
-    <script src="scripts/leaderboard.js"></script>
+    <a href="../index.html">⬅ Back to Overview</a>
+
+    <div id="house-house-one"></div>
+
     <script>
-        loadHouseLeaderboard('https://script.google.com/macros/s/AKfycbx2BWrB3-oiAY-zYpyfyYOIo3Abrkgr4GMM1AIW6RLHCnPZcUfPn72D1obsLvPMnXVp/exec');
+        fetchLeaderboard("house", "HOUSE THREE");
+        setInterval(() => fetchLeaderboard("house", "HOUSE THREE"), 10000);
     </script>
 </body>
 </html>
