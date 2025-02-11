@@ -1,6 +1,6 @@
 /* Apply Worksucks Background */
 body {
-    background: url('quiz-background.gif') repeat;
+    background: url('worksucksbackground.png') repeat;
     background-size: cover;
     color: #0ff; /* Neon cyan text */
     font-family: 'LazyDog', sans-serif;
