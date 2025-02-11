@@ -3,35 +3,37 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzq90skfdMkf--1W6aRkPDR
 // Function to fetch leaderboard data
 async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
-    console.log("Fetching leaderboard for:", tabName);
+
+    console.log(`Fetching leaderboard for: ${tabName}`);
 
     try {
         let response = await fetch(url, {
             method: "GET",
-            mode: "cors",
+            mode: "cors", // Attempt cross-origin request
             headers: { "Cache-Control": "no-cache" }
         });
 
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
         let data = await response.json();
-        console.log("Leaderboard data received:", data);
+        console.log("Leaderboard Data:", data);
         updateLeaderboardDisplay(tabName, data);
     } catch (error) {
-        console.error("Error fetching leaderboard:", error);
+        console.error(`Error fetching leaderboard:`, error);
     }
 }
 
-// Function to update leaderboard display
+// Function to update the leaderboard display
 function updateLeaderboardDisplay(tab, data) {
     let container = document.getElementById("leaderboard");
     container.innerHTML = `<h2>${tab === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${tab} Leaderboard`}</h2>`;
 
     let table = document.createElement("table");
-    table.innerHTML = `<tr>
-        <th>Type</th>
-        ${tab === "S4 OVERVIEW" ? "<th>Player Number</th><th>Score</th><th>Weapons</th>" : "<th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}
-    </tr>`;
+    table.innerHTML = `<tr>${tab === "S4 OVERVIEW"
+        ? "<th>Type</th><th>Player Number</th><th>Score</th><th>Weapons</th>"
+        : "<th>Type</th><th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}</tr>`;
 
     data.forEach(row => {
         let tr = document.createElement("tr");
@@ -46,30 +48,15 @@ function updateLeaderboardDisplay(tab, data) {
     container.appendChild(table);
 }
 
-// Auto-load leaderboard on page load
+// Auto-load leaderboard based on URL parameter
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
-    const tab = params.get("tab") || "S4 OVERVIEW";  // Default to Overview
-    console.log("Tab detected:", tab);
+    const tab = params.get("tab") || "S4 OVERVIEW"; // Default to Overview
     fetchLeaderboard(tab);
-
-    // Set interval to auto-refresh leaderboard every 10 seconds
-    setInterval(() => {
-        console.log("Auto-refreshing leaderboard for:", tab);
-        fetchLeaderboard(tab);
-    }, 10000);
 });
 
-// Dropdown to change leaderboard dynamically
-document.getElementById("house-select").addEventListener("change", function() {
+// Event listener for dropdown selection
+document.getElementById("house-select").addEventListener("change", function () {
     let selectedTab = this.value;
-    console.log("Dropdown changed to:", selectedTab);
     fetchLeaderboard(selectedTab);
-
-    // Clear previous interval and start a new one for the selected house
-    clearInterval(window.leaderboardInterval);
-    window.leaderboardInterval = setInterval(() => {
-        console.log("Auto-refreshing leaderboard for:", selectedTab);
-        fetchLeaderboard(selectedTab);
-    }, 10000);
 });
