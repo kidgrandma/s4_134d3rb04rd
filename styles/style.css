@@ -1,8 +1,8 @@
 /* Load LazyDog Font */
 @font-face {
     font-family: 'LazyDog';
-    src: url('Lazydog.otf') format('opentype'),
-         url('lazy_dog.ttf') format('truetype');
+    src: url('./Lazydog.otf') format('opentype'),
+         url('./lazy_dog.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
