@@ -12,10 +12,11 @@
         <h1>🏠 House 1 Leaderboard</h1>
         <div id="house1-leaderboard"></div>
     </div>
-
-    <script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
         fetchLeaderboard("house", "HOUSE ONE");
         setInterval(() => fetchLeaderboard("house", "HOUSE ONE"), 10000);
-    </script>
+    });
+</script>
 </body>
 </html>
