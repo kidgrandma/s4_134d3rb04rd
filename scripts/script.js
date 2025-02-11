@@ -27,9 +27,13 @@ function updateLeaderboardDisplay(tab, data) {
     container.innerHTML = `<h2>${tab === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${tab} Leaderboard`}</h2>`;
 
     let table = document.createElement("table");
-    table.innerHTML = `<tr>${tab === "S4 OVERVIEW"
+    table.innerHTML = `<thead>
+        <tr>${tab === "S4 OVERVIEW"
         ? "<th>Type</th><th>Player Number</th><th>Score</th><th>Weapons</th>"
-        : "<th>Type</th><th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}</tr>`;
+        : "<th>Type</th><th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}</tr>
+    </thead><tbody></tbody>`;
+
+    let tbody = table.querySelector("tbody");
 
     data.forEach(row => {
         let tr = document.createElement("tr");
@@ -38,7 +42,7 @@ function updateLeaderboardDisplay(tab, data) {
             td.textContent = cell;
             tr.appendChild(td);
         });
-        table.appendChild(tr);
+        tbody.appendChild(tr);
     });
 
     container.appendChild(table);
