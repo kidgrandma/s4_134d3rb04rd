@@ -1,21 +1,17 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxEjx0xvNA2bPlcMD2pAKVSydjkqMvuHdojo_NBB6IQ2O02ob7RyhosBUmnQZOB02ctqw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwemYyXAecnmu3gLLn4LKs1Lgudu0LPVQufMcTcWsRAmGOtmcQPK5fhJr493grCri9NKw/exec"; // ✅ Replace with new deployment URL
 
-// Function to fetch leaderboard data
 async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
-
-    console.log(`Fetching leaderboard for: ${tabName}`);
+    console.log("Fetching leaderboard for:", tabName);
 
     try {
         let response = await fetch(url, {
             method: "GET",
-            mode: "cors", // Attempt cross-origin request
+            mode: "cors",  // ✅ Ensure cross-origin request
             headers: { "Cache-Control": "no-cache" }
         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         let data = await response.json();
         console.log("Leaderboard Data:", data);
@@ -25,7 +21,6 @@ async function fetchLeaderboard(tabName) {
     }
 }
 
-// Function to update the leaderboard display
 function updateLeaderboardDisplay(tab, data) {
     let container = document.getElementById("leaderboard");
     container.innerHTML = `<h2>${tab === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${tab} Leaderboard`}</h2>`;
@@ -48,15 +43,15 @@ function updateLeaderboardDisplay(tab, data) {
     container.appendChild(table);
 }
 
-// Auto-load leaderboard based on URL parameter
+// ✅ Auto-load leaderboard based on URL parameter
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
-    const tab = params.get("tab") || "S4 OVERVIEW"; // Default to Overview
+    const tab = params.get("tab") || "S4 OVERVIEW";  // Default to Overview
     fetchLeaderboard(tab);
 });
 
-// Event listener for dropdown selection
+// ✅ Event listener for dropdown selection
 document.getElementById("house-select").addEventListener("change", function () {
-    let selectedTab = this.value;
+    const selectedTab = this.value;
     fetchLeaderboard(selectedTab);
 });
