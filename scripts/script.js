@@ -1,13 +1,16 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzqfFC9WZ86WTZ5HX5IyH5-sdscvnR1yGy1HbhTIhlZw2YhGNOxmpAenEM8NJC7cpc0/exec";
 
 async function fetchLeaderboard(house) {
-    let url = `${API_URL}?house=${encodeURIComponent(house)}`;
+    let url = `${API_URL}?type=${house === "S4 OVERVIEW" ? "overview" : "house"}&house=${encodeURIComponent(house)}`;
 
     try {
         let response = await fetch(url, {
             method: "GET",
-            mode: "cors",
-            headers: { "Cache-Control": "no-cache" }
+            mode: "cors", // ✅ Enables cross-origin request
+            headers: {
+                "Cache-Control": "no-cache",
+                "Content-Type": "application/json"
+            }
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
