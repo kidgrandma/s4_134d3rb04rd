@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
+    <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/script.js" defer></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const params = new URLSearchParams(window.location.search);
-        const tab = params.get("tab") || "S4 OVERVIEW";  // ✅ Default to Overview if no tab is provided
-        console.log("Tab detected:", tab); // ✅ Debugging log
-        fetchLeaderboard(tab);
-    });
-</script>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: black; color: cyan; text-align: center; }
-        table { width: 80%; margin: auto; border-collapse: collapse; }
-        th, td { border: 1px solid cyan; padding: 10px; }
-    </style>
 </head>
 <body>
-    <h1 id="leaderboard-title">Leaderboard</h1>
-    <div id="leaderboard"></div>
+    <div class="container">
+        <h1 id="leaderboard-title">🏆 Leaderboard</h1>
+
+        <!-- Dropdown to Select House -->
+        <select id="house-select">
+            <option value="S4 OVERVIEW">🏆 Overview</option>
+            <option value="HOUSE 1">🏠 House 1</option>
+            <option value="HOUSE 2">🏠 House 2</option>
+            <option value="HOUSE 3">🏠 House 3</option>
+        </select>
+
+        <!-- Table Container -->
+        <div id="leaderboard"></div>
+    </div>
 </body>
 </html>
