@@ -4,26 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/script.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: black; color: cyan; text-align: center; }
+        table { width: 80%; margin: auto; border-collapse: collapse; }
+        th, td { border: 1px solid cyan; padding: 10px; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="leaderboard-title">Leaderboard</h1>
-        <div id="leaderboard"></div>
-    </div>
-
-  <script>
-        // Detect house from URL (default to Overview)
-        const params = new URLSearchParams(window.location.search);
-        const house = params.get("house") || "S4 OVERVIEW"; // Default is Overview
-
-        document.getElementById("leaderboard-title").textContent = house === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${house} Leaderboard`;
-
-        // ✅ Ensure script.js is loaded before calling this function
-        window.onload = () => {
-            fetchLeaderboard(house);
-        };
-    </script>
+    <h1 id="leaderboard-title">Leaderboard</h1>
+    <div id="leaderboard"></div>
 </body>
 </html>
