@@ -1,26 +1,26 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbwdZaF6qaA3HrAoCZ-BZ8_apxwva0yhyy_wCVQQhspVX9Gos83P_jbzUvilnB5Mn2JvMw/exec"; 
+const API_URL = "https://script.google.com/macros/s/AKfycbwdZaF6qaA3HrAoCZ-BZ8_apxwva0yhy_wCVQQhspVX9Gos83P_jbzUvIlnB5Mn2JvMw/exec";
 
 async function fetchLeaderboard(tabName) {
+    if (!tabName) {
+        console.error("Error: tab is not defined.");
+        return;
+    }
+
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
+    console.log("Fetching leaderboard for tab:", tabName); // ✅ Debugging log
 
     try {
-        let response = await fetch(url, { 
+        let response = await fetch(url, {
             method: "GET",
+            mode: "cors", // ✅ Ensures cross-origin request
             headers: { "Cache-Control": "no-cache" }
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-        let textData = await response.text(); // Capture raw response
-        console.log("Raw API Response:", textData); // Log response to DevTools
-
-        let data = JSON.parse(textData); // Parse JSON manually
-        console.log("Parsed JSON Data:", data); // Log final parsed data
-
+        let data = await response.json();
         updateLeaderboardDisplay(tabName, data);
     } catch (error) {
-        console.log("Updating leaderboard for:", tab);
-console.log("Received data:", data);
         console.error(`Error fetching leaderboard:`, error);
     }
 }
@@ -47,10 +47,11 @@ function updateLeaderboardDisplay(tab, data) {
     container.appendChild(table);
 }
 
-// Auto-load leaderboard based on URL parameter
+// ✅ Ensure tab is retrieved correctly from the URL
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
-    const tab = params.get("tab") || "S4 OVERVIEW";  // Default to Overview
+    const tab = params.get("tab") || "S4 OVERVIEW";  // ✅ Default to Overview if no tab is provided
+    console.log("Tab detected:", tab); // ✅ Debugging log
     fetchLeaderboard(tab);
 });
  
