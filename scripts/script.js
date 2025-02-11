@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycby9-uW2gn3wRdtJkzUelo0kcGh2wIBMpVD1EwpYWwDshxuk77DQFKqQjyMCeXLaHI31eg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbx8EYRig-k1CxlJeSzTHdBI1EVDEBh7vilh9-9cfnD2vp3fzNDqarCM8_nwnyHzb72a2w/exec";
 
 async function fetchLeaderboard(tabName) {
     if (!tabName) {
