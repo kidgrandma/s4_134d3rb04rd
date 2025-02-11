@@ -1,37 +1,30 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzAdfQiumMdWaYhMn9_8cCiTjjSjDiyF_9MB4eiHdwmw6LA4SGSO1AxenyCZxy3YewR/exec"; // Corrected API URL
+const API_URL = "https://script.google.com/macros/s/AKfycbycLKYso69D4Vc9Rcocb_ZyNZpr6dl0r9o10-OY6sJ0B_oPCEL3wsp71LWNWnl5Lc0/exec";
 
-async function fetchLeaderboard(type, house = null) {
-    let sheetName = type === "overview" ? "S4 OVERVIEW" : house;
-    let url = `https://script.google.com/macros/s/AKfycbzAdfQiumMdWaYhMn9_8cCiTjjSjDiyF_9MB4eiHdwmw6LA4SGSO1AxenyCZxy3YewR/exec?type=${type}&house=${encodeURIComponent(sheetName)}`;
+async function fetchLeaderboard(house) {
+    let url = `${API_URL}?house=${encodeURIComponent(house)}`;
 
     try {
         let response = await fetch(url, {
             method: "GET",
-            mode: "cors", // <-- Force CORS mode
+            mode: "cors",
             headers: { "Cache-Control": "no-cache" }
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         let data = await response.json();
-        console.log("Fetched Data:", data); // Debugging
-        updateLeaderboardDisplay(type, data, sheetName);
+        updateLeaderboardDisplay(house, data);
     } catch (error) {
-        console.error(`Error fetching ${type} leaderboard:`, error);
+        console.error(`Error fetching leaderboard:`, error);
     }
 }
 
-function updateLeaderboardDisplay(type, data, house) {
-    let containerId = type === "overview" ? "overview-leaderboard" : `${house.toLowerCase().replace(" ", "-")}-leaderboard`;
-    let container = document.getElementById(containerId);
-    
-    if (!container) return;
-
-    // Clear existing data
-    container.innerHTML = `<h2>${type === "overview" ? "Overview Leaderboard" : house} Leaderboard</h2>`;
+function updateLeaderboardDisplay(house, data) {
+    let container = document.getElementById("leaderboard");
+    container.innerHTML = `<h2>${house === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${house} Leaderboard`}</h2>`;
 
     let table = document.createElement("table");
-    table.innerHTML = `<tr>${type === "overview" 
+    table.innerHTML = `<tr>${house === "S4 OVERVIEW" 
         ? "<th>Type</th><th>Player Number</th><th>Score</th><th>Weapons</th>"
         : "<th>Type</th><th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}</tr>`;
 
