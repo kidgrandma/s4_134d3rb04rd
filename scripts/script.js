@@ -1,5 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "https://script.google.com/macros/s/AKfycbycv_Hy2h7rt3I37rcueIpTbzibDwQpBXEB8Rd02HOPSROeCiykIdc6QHdQrrIvXMrHtQ/exec";
+document.addEventListener("DOMContentLoaded", async function () {
+   const API_URL = "https://script.google.com/macros/s/AKfycbycv_Hy2h7rt3I37rcueIpTbzibDwQpBXEB8Rd02HOPSROeCiykIdc6QHdQrrIvXMrHtQ/exec";
+
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
@@ -32,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
         console.error("Error fetching leaderboard:", error);
     }
-}
-
+});
     fetchLeaderboard();
     setInterval(fetchLeaderboard, 30000); // Refresh every 30 sec
 });
