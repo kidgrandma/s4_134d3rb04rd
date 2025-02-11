@@ -4,8 +4,17 @@
     src: url('../assets/Lazydog.otf') format('opentype'),
          url('../assets/lazy_dog.ttf') format('truetype');
 }
- 
-/* Apply Worksucks Background */
+ /* Virgin (Green) */
+.virgin {
+    color: #00FF00 !important; /* Neon Green */
+    font-weight: bold;
+}
+
+/* Veteran (Pink) */
+.veteran {
+    color: #FF00FF !important; /* Neon Pink */
+    font-weight: bold;
+}/* Apply Worksucks Background */
 body {
 background: url('../assets/worksucksbackground.png') repeat;
     background-size: cover;
