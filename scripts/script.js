@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxZYF13Uq3Pl2FUfuu7K9Uke9QpdLQwSFpJS8LOeQJSQlSqpDt0m_VnoMnVf1poFsEUNQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxZYF13Uq3Pl2FUfuu7K9Uke9QpdLQwSFpJS8LOeQJSQlSqpDt0m_VnoMnVf1poFsEUNQ/exec"; // Replace with your actual Google Apps Script Web App URL
 
 async function fetchLeaderboard() {
     try {
@@ -21,7 +21,14 @@ function updateLeaderboardDisplay(data) {
     container.innerHTML = `<h2>🏆 S4 Overview Leaderboard</h2>`;
 
     let table = document.createElement("table");
-    table.innerHTML = `<tr><th>Type</th><th>Player Number</th><th>Score</th><th>Weapons</th></tr>`;
+    table.innerHTML = `<tr>
+        <th>Type</th>
+        <th>Handle</th>
+        <th>Team</th>
+        <th>Weapons</th>
+        <th>Player Number</th>
+        <th>Score</th>
+    </tr>`;
 
     data.forEach(row => {
         let tr = document.createElement("tr");
