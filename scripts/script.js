@@ -1,5 +1,5 @@
 const API_URL = "https://script.google.com/macros/s/AKfycby-ImMu84aaRuAX2r4-3cB6vE2szGGvzHOWHza_i5tsHJlhQ16mgXufHAWTTHgaZOeqQw/exec";
- 
+
 async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
 
@@ -19,6 +19,9 @@ async function fetchLeaderboard(tabName) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    fetchLeaderboard("S4 OVERVIEW");  // Default Load
+});
 function updateLeaderboardDisplay(tab, data) {
     let container = document.getElementById("leaderboard");
     container.innerHTML = `<h2>${tab === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${tab} Leaderboard`}</h2>`;
