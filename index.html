@@ -13,13 +13,17 @@
         <div id="leaderboard"></div>
     </div>
 
-    <script>
+  <script>
         // Detect house from URL (default to Overview)
         const params = new URLSearchParams(window.location.search);
         const house = params.get("house") || "S4 OVERVIEW"; // Default is Overview
 
         document.getElementById("leaderboard-title").textContent = house === "S4 OVERVIEW" ? "🏆 Overview Leaderboard" : `🏠 ${house} Leaderboard`;
-        fetchLeaderboard(house);
+
+        // ✅ Ensure script.js is loaded before calling this function
+        window.onload = () => {
+            fetchLeaderboard(house);
+        };
     </script>
 </body>
 </html>
