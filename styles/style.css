@@ -1,0 +1,34 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: black;
+    color: cyan;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 15px cyan;
+}
+
+h1, h2 {
+    text-shadow: 0 0 10px cyan;
+}
+
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid cyan;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: rgba(0, 255, 255, 0.2);
+}
