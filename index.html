@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <script src="scripts/script.js" defer></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get("tab") || "S4 OVERVIEW";  // ✅ Default to Overview if no tab is provided
+        console.log("Tab detected:", tab); // ✅ Debugging log
+        fetchLeaderboard(tab);
+    });
+</script>
     <style>
         body { font-family: Arial, sans-serif; background-color: black; color: cyan; text-align: center; }
         table { width: 80%; margin: auto; border-collapse: collapse; }
