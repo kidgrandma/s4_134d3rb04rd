@@ -1,16 +1,16 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzq90skfdMkf--1W6aRkPDRM8sPyDU38P9A1naRC78fugh04yoLz0wDG1md5m4ybugleg/exec"; 
+const API_URL = "https://script.google.com/macros/s/AKfycbzq90skfdMkf--1W6aRkPDRM8sPyDU38P9A1naRC78fugh04yoLz0wDG1md5m4ybugleg/exec";
 
 async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
 
     try {
-let response = await fetch(url, {
-    method: "GET",
-    mode: "no-cors",
-    headers: { "Cache-Control": "no-cache" }
-});
+        let response = await fetch(url, {
+            method: "GET",
+            mode: "cors",
+            headers: { "Cache-Control": "no-cache" }
+        });
 
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         let data = await response.json();
         updateLeaderboardDisplay(tabName, data);
@@ -41,11 +41,14 @@ function updateLeaderboardDisplay(tab, data) {
     container.appendChild(table);
 }
 
-// ✅ Ensure tab is retrieved correctly from the URL
+// Automatically load based on dropdown selection
 document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const tab = params.get("tab") || "S4 OVERVIEW";  // ✅ Default to Overview if no tab is provided
-    console.log("Tab detected:", tab); // ✅ Debugging log
-    fetchLeaderboard(tab);
+    const select = document.getElementById("house-select");
+    select.addEventListener("change", () => {
+        let tab = select.value;
+        fetchLeaderboard(tab);
+    });
+
+    // Default load S4 OVERVIEW
+    fetchLeaderboard("S4 OVERVIEW");
 });
- 
