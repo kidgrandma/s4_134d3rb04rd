@@ -1,15 +1,15 @@
 /* Load LazyDog Font */
 @font-face {
     font-family: 'LazyDog';
-    src: url('/Lazydog.otf') format('opentype'),
-         url('/lazy_dog.ttf') format('truetype');
+    src: url('/assets/Lazydog.otf') format('opentype'),
+         url('/assets/lazy_dog.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 /* Apply Worksucks Background */
 body {
-    background: url('/worksucksbackground.png') repeat;
+    background: url('/assets/worksucksbackground.png') repeat;
     background-size: cover;
     color: #0ff; /* Neon cyan text */
     font-family: 'LazyDog', sans-serif;
