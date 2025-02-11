@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbycLKYso69D4Vc9Rcocb_ZyNZpr6dl0r9o10-OY6sJ0B_oPCEL3wsp71LWNWnl5Lc0/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbzqfFC9WZ86WTZ5HX5IyH5-sdscvnR1yGy1HbhTIhlZw2YhGNOxmpAenEM8NJC7cpc0/exec";
 
 async function fetchLeaderboard(house) {
     let url = `${API_URL}?house=${encodeURIComponent(house)}`;
