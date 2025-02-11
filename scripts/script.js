@@ -4,11 +4,11 @@ async function fetchLeaderboard(tabName) {
     let url = `${API_URL}?tab=${encodeURIComponent(tabName)}`;
 
     try {
-        let response = await fetch(url, {
-            method: "GET",
-            mode: "cors", // ✅ Ensures cross-origin request
-            headers: { "Cache-Control": "no-cache" }
-        });
+let response = await fetch(url, {
+    method: "GET",
+    mode: "no-cors",
+    headers: { "Cache-Control": "no-cache" }
+});
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
