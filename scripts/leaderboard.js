@@ -1,37 +1,75 @@
-async function loadOverviewLeaderboard() {
-    const response = await fetch('https://script.google.com/macros/s/OVERVIEW_WEB_APP_URL/exec');
-    const data = await response.json();
+const API_URL = "https://script.google.com/macros/s/AKfycbxAuzgY2NvYafArQvz0vUkMjpLzlecsgCbejCIztA0zhxaVwFjgqgshm1KIjnT14TcI/exec"; // Replace with your Google Apps Script Web App URL
 
-    let overviewHTML = '';
-    data.forEach((row, index) => {
-        overviewHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${row.name}</td>
-                <td>${row.house}</td>
-                <td>${row.score}</td>
-            </tr>`;
-    });
+async function fetchLeaderboard(type, house = null) {
+    let url = `${API_URL}?type=${type}`;
+    if (house) url += `&house=${house}`;
 
-    document.getElementById('overview-leaderboard').innerHTML = overviewHTML;
+    try {
+        let response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to fetch leaderboard data");
+
+        let data = await response.json();
+        updateLeaderboardDisplay(type, data, house);
+    } catch (error) {
+        console.error(`Error fetching ${type} leaderboard:`, error);
+    }
 }
 
-async function loadHouseLeaderboard(apiUrl) {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+function updateLeaderboardDisplay(type, data, house) {
+    let containerId = type === "overview" ? "overview-leaderboard" : `house-${house.toLowerCase().replace(" ", "-")}`;
+    let container = document.getElementById(containerId);
+    
+    if (!container) return;
 
-    let leaderboardHTML = '';
-    data.forEach((row) => {
-        leaderboardHTML += `
-            <tr>
-                <td>${row.type}</td>
-                <td>${row.handle}</td>
-                <td>${row.team}</td>
-                <td>${row.playerNumber}</td>
-                <td>${row.rank}</td>
-                <td>${row.score}</td>
-            </tr>`;
+    // Clear existing data
+    container.innerHTML = `<h2>${type === "overview" ? "Overview Leaderboard" : house} Leaderboard</h2>`;
+
+    let table = document.createElement("table");
+    table.innerHTML = `<tr>${type === "overview" 
+        ? "<th>Type</th><th>Player Number</th><th>Score</th><th>Weapons</th>"
+        : "<th>Type</th><th>Handle</th><th>Team</th><th>Player Number</th><th>Score</th>"}</tr>`;
+
+    data.forEach(row => {
+        let tr = document.createElement("tr");
+        row.forEach(cell => {
+            let td = document.createElement("td");
+            td.textContent = cell;
+            tr.appendChild(td);
+        });
+        table.appendChild(tr);
     });
 
-    document.getElementById('leaderboard').innerHTML = leaderboardHTML;
+    container.appendChild(table);
 }
+
+// Function to determine which leaderboards to show based on house selection
+function loadLeaderboards(house) {
+    fetchLeaderboard("overview");
+    if (house) fetchLeaderboard("house", house);
+}
+
+// Refresh leaderboards every 10 seconds
+setInterval(() => {
+    const selectedHouse = localStorage.getItem("selectedHouse");
+    loadLeaderboards(selectedHouse);
+}, 10000);
+
+// House selection logic
+document.addEventListener("DOMContentLoaded", () => {
+    const houseSelect = document.getElementById("house-select");
+    
+    if (houseSelect) {
+        houseSelect.addEventListener("change", (event) => {
+            const house = event.target.value;
+            localStorage.setItem("selectedHouse", house);
+            loadLeaderboards(house);
+        });
+
+        // Load previously selected house
+        const savedHouse = localStorage.getItem("selectedHouse");
+        if (savedHouse) {
+            houseSelect.value = savedHouse;
+            loadLeaderboards(savedHouse);
+        }
+    }
+});
