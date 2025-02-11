@@ -9,7 +9,7 @@
  
 /* Apply Worksucks Background */
 body {
-    background: url('/assets/worksucksbackground.png') repeat;
+background: url('assets/worksucksbackground.png') repeat;
     background-size: cover;
     color: #0ff; /* Neon cyan text */
     font-family: 'LazyDog', sans-serif;
