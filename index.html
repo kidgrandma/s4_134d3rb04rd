@@ -3,37 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>Leaderboard Overview</title>
+    <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/script.js" defer></script>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: black; color: cyan; text-align: center; }
-        table { width: 80%; margin: auto; border-collapse: collapse; }
-        th, td { border: 1px solid cyan; padding: 10px; }
-    </style>
 </head>
 <body>
-    <h1>Leaderboard</h1>
-
-    <div id="overview-leaderboard"></div>
-    <div id="house-house-one" style="display: none;"></div>
-    <div id="house-house-two" style="display: none;"></div>
-    <div id="house-house-three" style="display: none;"></div>
+    <div class="container">
+        <h1>Leaderboard Overview</h1>
+        <div id="overview-leaderboard"></div>
+    </div>
 
     <script>
-        function getURLParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        // Read the "house" parameter from the URL
-        const house = getURLParameter("house");
-        if (house) {
-            const houseId = `house-${house.toLowerCase().replace(" ", "-")}`;
-            document.getElementById("overview-leaderboard").style.display = "block";
-            document.getElementById(houseId).style.display = "block";
-        } else {
-            document.getElementById("overview-leaderboard").style.display = "block";
-        }
+        fetchLeaderboard("overview");
+        setInterval(() => fetchLeaderboard("overview"), 10000);
     </script>
 </body>
 </html>
