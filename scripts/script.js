@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbz29NY_AJtz0JcG-YafwnJHC12O5kS3GiD-_D3MUvL95JxLrdmS3Ul9FOVoxO0LjqDkXw/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxEjx0xvNA2bPlcMD2pAKVSydjkqMvuHdojo_NBB6IQ2O02ob7RyhosBUmnQZOB02ctqw/exec";
 
 // Function to fetch leaderboard data
 async function fetchLeaderboard(tabName) {
