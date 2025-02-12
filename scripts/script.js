@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td class="${playerClass}">${player["Type"]}</td>
                     <td class="${playerClass}">${player["Handle"]}</td>
                     <td>${player["Team"]}</td>
-                    <td>${player["Tr"]}</td>
                     <td>${player["Weapons"]}</td>
                     <td>${player["Player Number"]}</td>
                     <td>${player["Score"]}</td>
