@@ -43,4 +43,4 @@ async function fetchLeaderboard() {
 document.addEventListener("DOMContentLoaded", function () {
     fetchLeaderboard(); // Run immediately
     setInterval(fetchLeaderboard, 30000); // Auto-refresh every 30 sec
-});
+})
