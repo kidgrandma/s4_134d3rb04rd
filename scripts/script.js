@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "https://script.google.com/macros/s/AKfycbycv_Hy2h7rt3I37rcueIpTbzibDwQpBXEB8Rd02HOPSROeCiykIdc6QHdQrrIvXMrHtQ/exec" 
+const API_URL = "https://script.google.com/macros/s/AKfycbycv_Hy2h7rt3I37rcueIpTbzibDwQpBXEB8Rd02HOPSROeCiykIdc6QHdQrrIvXMrHtQ/exec"; // Replace with your API URL
+
 // Define the function globally
 async function fetchLeaderboard() {
     try {
@@ -42,4 +42,4 @@ async function fetchLeaderboard() {
 document.addEventListener("DOMContentLoaded", function () {
     fetchLeaderboard(); // Run immediately
     setInterval(fetchLeaderboard, 30000); // Auto-refresh every 30 sec
-})
+});
