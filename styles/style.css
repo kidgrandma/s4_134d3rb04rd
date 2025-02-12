@@ -4,28 +4,35 @@
     src: url('../assets/Lazydog.otf') format('opentype'),
          url('../assets/lazy_dog.ttf') format('truetype');
 }
- /* Virgin (Green) */
+
+/* Virgin (Green) */
 .virgin {
     color: #00FF00 !important; /* Neon Green */
     font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
 }
 
 /* Veteran (Pink) */
 .veteran {
     color: #FF00FF !important; /* Neon Pink */
     font-weight: bold;
-}/* Apply Worksucks Background */
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.7);
+}
+
+/* Apply Worksucks Background */
 body {
-background: url('../assets/worksucksbackground.png') repeat;
+    background: url('../assets/worksucksbackground.png') repeat;
     background-size: cover;
     color: #0ff; /* Neon cyan text */
     font-family: 'LazyDog', sans-serif;
     text-align: center;
     padding: 20px;
 }
+
+/* Headings - Reduce Glow */
 h1 {
     font-size: 2.5rem;
-    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.8), 0 0 16px rgba(0, 255, 255, 0.5);
     margin-bottom: 20px;
     font-family: 'LazyDog', sans-serif;
 }
@@ -35,23 +42,43 @@ table {
     width: 90%;
     margin: 20px auto;
     border-collapse: collapse;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 15px cyan;
+    background: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 0 12px cyan;
     border-radius: 10px;
     overflow: hidden;
     font-family: 'LazyDog', sans-serif;
 }
 
+/* Table Header & Cell Styling */
 th, td {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid cyan;
-    text-shadow: 0 0 5px cyan;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.7);
+    font-size: 1rem; /* Ensuring readability */
 }
 
 th {
-    background: rgba(0, 255, 255, 0.2);
+    background: rgba(0, 255, 255, 0.15);
 }
 
 td {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
+}
+
+/* Reduce Glow & Adjust Text Size for Mobile */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Keep text readable */
+        text-shadow: 0 0 4px rgba(0, 255, 255, 0.5);
+    }
+
+    th, td {
+        font-size: 1rem; /* Standard mobile text size */
+        text-shadow: 0 0 2px rgba(0, 255, 255, 0.5);
+    }
+
+    table {
+        width: 100%; /* Ensure full width on smaller screens */
+        box-shadow: 0 0 8px cyan;
+    }
 }
