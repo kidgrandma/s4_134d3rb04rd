@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let row = `<tr>
                     <td class="${playerClass}">${player["Type"]}</td>
                     <td class="${playerClass}">${player["Handle"]}</td>
-                    <td>${player["Player Number"]}</td>
+                    <td class="${playerClass}">${player["Player Number"]}</td>
                     <td>${player["Score"]}</td>
                 </tr>`;
 
