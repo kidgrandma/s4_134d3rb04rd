@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const API_URL = "https://script.google.com/macros/s/AKfycbycv_Hy2h7rt3I37rcueIpTbzibDwQpBXEB8Rd02HOPSROeCiykIdc6QHdQrrIvXMrHtQ/exec" 
-
+ 
     async function fetchLeaderboard() {
         try {
             const response = await fetch(API_URL);
